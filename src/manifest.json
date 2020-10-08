@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "Export as ColorSet",
+      "shortcut": "ctrl t",
+      "identifier": "colorvariablesexporter.export-as-colorSet",
+      "handler": "exportAsColorSet",
+      "script": "./main.js"
+    }
+  ],
+  "menu": {
+    "title": "Color Variables Exporter",
+    "items": [
+      "colorvariablesexporter.export-as-colorSet"
+    ]
+  }
+}
