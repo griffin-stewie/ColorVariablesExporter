@@ -4,16 +4,22 @@
   "commands": [
     {
       "name": "Export as ColorSet",
-      "shortcut": "ctrl t",
       "identifier": "colorvariablesexporter.export-as-colorSet",
       "handler": "exportAsColorSet",
       "script": "./main.js"
+    },
+    {
+      "name": "Export as color.xml",
+      "identifier": "colorvariablesexporter.export-as-colorXML",
+      "handler": "exportAsColorXML",
+      "script": "main.js"
     }
   ],
   "menu": {
     "title": "Color Variables Exporter",
     "items": [
-      "colorvariablesexporter.export-as-colorSet"
+      "colorvariablesexporter.export-as-colorSet",
+      "colorvariablesexporter.export-as-colorXML"
     ]
   }
 }
