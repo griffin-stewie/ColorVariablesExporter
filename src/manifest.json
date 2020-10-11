@@ -13,13 +13,20 @@
       "identifier": "colorvariablesexporter.export-as-colorXML",
       "handler": "exportAsColorXML",
       "script": "main.js"
-    }
+    },
+        {
+          "name": "Export as JSON",
+          "identifier": "colorvariablesexporter.export-as-JSON",
+          "handler": "exportAsJSON",
+          "script": "main.js"
+        }
   ],
   "menu": {
     "title": "Color Variables Exporter",
     "items": [
       "colorvariablesexporter.export-as-colorSet",
-      "colorvariablesexporter.export-as-colorXML"
+      "colorvariablesexporter.export-as-colorXML",
+      "colorvariablesexporter.export-as-JSON"
     ]
   }
 }
