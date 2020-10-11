@@ -1,4 +1,4 @@
-var Document = require('sketch/dom').Document
+import { SwatchWrapper } from '../SwatchWrapper'
 
 export class ColorSetExporter {
   constructor(swatches, colorSpace) {
@@ -33,60 +33,3 @@ export class ColorSetExporter {
   }
 }
 
-class SwatchWrapper {
-  constructor(swatch, colorSpace) {
-    this.swatch = swatch;
-    this.colorSpace = colorSpace
-  }
-
-  color() {
-    return this.swatch.sketchObject.color()
-  }
-
-  colorSpaceString() {
-    switch (this.colorSpace) {
-      case Document.ColorSpace.sRGB:
-        return "srgb";
-      case Document.ColorSpace.P3:
-        return "display-p3";
-      default:
-        return "hoge";
-    }
-  }
-
-  contentsJSONString() {
-    return JSON.stringify(this.contentsJSON(), null, 2)
-  }
-
-  contentsJSON() {
-    const c = this.colorObject()
-    return {
-      colors: [c],
-      info: {
-        author: "github.com/griffin-stewie/ColorVariablesExporter",
-        version: 1
-      }
-    }
-  }
-
-  colorObject() {
-    const color = {
-      "color-space": this.colorSpaceString(),
-      components: this.colorComponents()
-    }
-    return {
-      color: color,
-      idiom: "universal"
-    }
-  }
-
-  colorComponents() {
-    const color = this.color()
-    return {
-      alpha: color.alpha().toFixed(3),
-      blue: color.blue().toFixed(3),
-      green: color.green().toFixed(3),
-      red: color.red().toFixed(3),
-    }
-  }
-}
