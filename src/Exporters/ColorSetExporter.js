@@ -8,9 +8,11 @@ export class ColorSetExporter {
 
   exportAsFile(url) {
     const manager = NSFileManager.defaultManager()
-    this.swatches.forEach(swatch => {
-      const wrapper = new SwatchWrapper(swatch, this.colorSpace)
-      const name = swatch.name.toLowerCase().trim().split(" ").join("_")
+    const wrappers = this.swatches.map(swatch => {
+      return new SwatchWrapper(swatch, this.colorSpace)
+    })
+    wrappers.forEach(wrapper => {
+      const name = wrapper.snakeCasedName()
       const fileName = `${name}.colorset`
       const colorsetURL = url.URLByAppendingPathComponent(fileName)
       manager.createDirectoryAtPath_withIntermediateDirectories_attributes_error(
