@@ -24,5 +24,8 @@
     "@skpm/builder": "^0.7.0"
   },
   "repository": "https://github.com/griffin-stewie/ColorVariablesExporter.git",
-  "author": "griffin-stewie"
+  "author": "griffin-stewie",
+  "dependencies": {
+    "change-case": "^4.1.1"
+  }
 }
