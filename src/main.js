@@ -43,11 +43,6 @@ export function exportAsCLR(context) {
 }
 
 function exportByExporter(contxt, exporter) {
-
-  const manager = NSFileManager.defaultManager()
-  const desktopURL = manager.URLsForDirectory_inDomains(NSDesktopDirectory, NSUserDomainMask)[0]
-
-  exporter.exportAsFile(desktopURL)
-
-  sketch.UI.message(`Exported at ${desktopURL} 🙌`)
+  exporter.exportAsFile()
+  sketch.UI.message(`Exported 🙌`)
 }

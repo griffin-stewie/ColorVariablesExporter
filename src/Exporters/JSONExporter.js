@@ -1,4 +1,5 @@
 import { SwatchWrapper } from '../SwatchWrapper'
+import * as ui from '../UI';
 
 export class JSONExporter {
   constructor(swatches, colorSpace) {
@@ -6,8 +7,12 @@ export class JSONExporter {
     this.colorSpace = colorSpace
   }
 
-  exportAsFile(url) {
-    const manager = NSFileManager.defaultManager()
+  exportAsFile() {
+    const destinationURL = ui.showSaveFileDialog("colors.json")
+
+    if (destinationURL === null) {
+      return
+    }
 
     let jsonRoot = {}
     this.swatches.forEach(swatch => {
@@ -17,10 +22,10 @@ export class JSONExporter {
     });
 
     const json = JSON.stringify(jsonRoot, null, 2)
-    const path = url.path()
+    const path = destinationURL.path()
     const fileString = NSString.stringWithString(json)
     fileString.writeToFile_atomically_encoding_error(
-      `${path}/colors.json`,
+      path,
       true,
       NSUTF8StringEncoding,
       null

@@ -1,5 +1,6 @@
 import { SwatchWrapper } from '../SwatchWrapper'
 import * as changeCase from "change-case";
+import * as ui from '../UI';
 
 export class SwiftUIColorExtensionExporter {
   constructor(swatches, colorSpace) {
@@ -7,16 +8,21 @@ export class SwiftUIColorExtensionExporter {
     this.colorSpace = colorSpace
   }
 
-  exportAsFile(url) {
+  exportAsFile() {
+    const destinationURL = ui.showSaveFileDialog("Colors.generated.swift")
+
+    if (destinationURL === null) {
+      return
+    }
+
     const wrappers = this.swatches.map(swatch => {
       return new SwatchWrapper(swatch, this.colorSpace)
     })
 
     const code = this.contentsSwiftCodeString(wrappers)
-    const path = url.path()
     const fileString = NSString.stringWithString(code)
     fileString.writeToFile_atomically_encoding_error(
-      `${path}/Colors.generated.swift`,
+      destinationURL.path(),
       true,
       NSUTF8StringEncoding,
       null

@@ -1,4 +1,5 @@
 import { SwatchWrapper } from '../SwatchWrapper'
+import * as ui from '../UI';
 
 export class CLRExporter {
   constructor(swatches, colorSpace) {
@@ -6,7 +7,13 @@ export class CLRExporter {
     this.colorSpace = colorSpace
   }
 
-  exportAsFile(url) {
+  exportAsFile() {
+    const destinationURL = ui.showSaveFileDialog("colors.clr")
+
+    if (destinationURL === null) {
+      return
+    }
+
     const colorList = NSColorList.alloc().initWithName("colors")
     this.swatches.forEach(swatch => {
       const wrapper = new SwatchWrapper(swatch, this.colorSpace)
@@ -16,8 +23,6 @@ export class CLRExporter {
       // log(`🍣: ${swatch.name} => ${swatch.color}, ${this.colorSpace}, ${wrapper.contentsJSONString()}`)
     });
     log(`🍣: ${colorList.name()}`)
-    const fileName = `colors.clr`
-    const destURL = url.URLByAppendingPathComponent(fileName)
-    colorList.writeToURL_error(destURL, null)
+    colorList.writeToURL_error(destinationURL, null)
   }
 }

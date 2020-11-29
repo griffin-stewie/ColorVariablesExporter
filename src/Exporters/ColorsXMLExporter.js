@@ -1,4 +1,5 @@
 import { SwatchWrapper } from '../SwatchWrapper'
+import * as ui from '../UI';
 
 export class ColorsXMLExporter {
   constructor(swatches, colorSpace) {
@@ -6,8 +7,12 @@ export class ColorsXMLExporter {
     this.colorSpace = colorSpace
   }
 
-  exportAsFile(url) {
-    const manager = NSFileManager.defaultManager()
+  exportAsFile() {
+    const destinationURL = ui.showSaveFileDialog("colors.xml")
+
+    if (destinationURL === null) {
+      return
+    }
 
     let colorTags = new Array()
     this.swatches.forEach(swatch => {
@@ -17,10 +22,10 @@ export class ColorsXMLExporter {
     });
 
     const xml = this.contentsXMLString(colorTags)
-    const path = url.path()
+    const path = destinationURL.path()
     const fileString = NSString.stringWithString(xml)
     fileString.writeToFile_atomically_encoding_error(
-      `${path}/colors.xml`,
+      path,
       true,
       NSUTF8StringEncoding,
       null

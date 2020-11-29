@@ -1,4 +1,5 @@
 import { SwatchWrapper } from '../SwatchWrapper'
+import * as ui from '../UI';
 
 export class ColorSetExporter {
   constructor(swatches, colorSpace) {
@@ -6,7 +7,13 @@ export class ColorSetExporter {
     this.colorSpace = colorSpace
   }
 
-  exportAsFile(url) {
+  exportAsFile() {
+    const destinationURL = ui.showSaveDirectoryDialog()
+
+    if (destinationURL === null) {
+      return
+    }
+
     const manager = NSFileManager.defaultManager()
     const wrappers = this.swatches.map(swatch => {
       return new SwatchWrapper(swatch, this.colorSpace)
@@ -14,7 +21,7 @@ export class ColorSetExporter {
     wrappers.forEach(wrapper => {
       const name = wrapper.snakeCasedName()
       const fileName = `${name}.colorset`
-      const colorsetURL = url.URLByAppendingPathComponent(fileName)
+      const colorsetURL = destinationURL.URLByAppendingPathComponent(fileName)
       manager.createDirectoryAtPath_withIntermediateDirectories_attributes_error(
         colorsetURL.path(),
         true,
