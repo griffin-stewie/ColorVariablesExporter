@@ -9,6 +9,12 @@
       "script": "./main.js"
     },
     {
+      "name": "Export as Swift UIColor Extension using ColorSet",
+      "identifier": "colorvariablesexporter.export-as-swiftColorExtensionUsingColorSet",
+      "handler": "exportAsSwiftColorExtensionUsingColorSet",
+      "script": "./main.js"
+    },
+    {
       "name": "Export as color.xml",
       "identifier": "colorvariablesexporter.export-as-colorXML",
       "handler": "exportAsColorXML",
@@ -31,6 +37,7 @@
     "title": "Color Variables Exporter",
     "items": [
       "colorvariablesexporter.export-as-colorSet",
+      "colorvariablesexporter.export-as-swiftColorExtensionUsingColorSet",
       "colorvariablesexporter.export-as-colorXML",
       "colorvariablesexporter.export-as-JSON",
       "colorvariablesexporter.export-as-CLR"

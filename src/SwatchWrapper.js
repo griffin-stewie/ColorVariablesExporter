@@ -1,4 +1,5 @@
 var Document = require('sketch/dom').Document
+import * as changeCase from "change-case";
 
 export class SwatchWrapper {
     constructor(swatch, colorSpace) {
@@ -8,6 +9,10 @@ export class SwatchWrapper {
 
     name() {
         return this.swatch.name.trim()
+    }
+
+    snakeCasedName() {
+        return changeCase.snakeCase(this.swatch.name.trim())
     }
 
     color() {
@@ -25,7 +30,11 @@ export class SwatchWrapper {
                 colorSpace = NSColorSpace.sRGBColorSpace()
         }
 
-        return this.swatch.sketchObject.color().NSColorWithColorSpace(colorSpace)
+        return this.color().NSColorWithColorSpace(colorSpace)
+    }
+
+    hexRGBColor() {
+        return this.swatch.color.toUpperCase().slice(0,7)
     }
 
     hexRGBAColor() {
@@ -38,13 +47,13 @@ export class SwatchWrapper {
         return `#${color.slice(7, color.length)}${color.slice(1, 7)}`
     }
 
-
+    alphaValue() {
+        return this.color().alpha()
+    }
 
     colorTag() {
         return `<color name="${this.name()}">${this.hexARGBColor()}</color>`
     }
-
-
 
     colorSpaceString() {
         switch (this.colorSpace) {
