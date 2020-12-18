@@ -17,7 +17,7 @@ export class ColorsXMLExporter {
     let colorTags = new Array()
     this.swatches.forEach(swatch => {
       const wrapper = new SwatchWrapper(swatch, this.colorSpace)
-      colorTags.push(wrapper.colorTag())
+      colorTags.push(this.colorTag(wrapper))
       // log(`🍣: ${swatch.name} => ${swatch.color}, ${this.colorSpace}, ${wrapper.contentsJSONString()}`)
     });
 
@@ -30,6 +30,10 @@ export class ColorsXMLExporter {
       NSUTF8StringEncoding,
       null
     )
+  }
+
+  colorTag(wrapper) {
+    return `<color name="${wrapper.snakeCasedName(true)}">${wrapper.hexARGBColor()}</color>`
   }
 
   contentsXMLString(colorTags) {

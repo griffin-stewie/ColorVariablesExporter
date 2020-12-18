@@ -63,10 +63,6 @@ export class SwatchWrapper {
         return this.color().alpha()
     }
 
-    colorTag() {
-        return `<color name="${this.snakeCasedName(true)}">${this.hexARGBColor()}</color>`
-    }
-
     colorSpaceString() {
         switch (this.colorSpace) {
             case Document.ColorSpace.sRGB:
