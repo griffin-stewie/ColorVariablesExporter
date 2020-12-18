@@ -11,8 +11,20 @@ export class SwatchWrapper {
         return this.swatch.name.trim()
     }
 
-    snakeCasedName() {
-        return changeCase.snakeCase(this.swatch.name.trim())
+    snakeCasedName(dropLeadingNumber) {
+        let name = this.swatch.name.trim()
+        if (dropLeadingNumber) {
+            name = name.replace(/^([0-9]+?)/gi, "")
+        }
+        return changeCase.snakeCase(name)
+    }
+
+    camelCasedName(dropLeadingNumber) {
+        let name = this.swatch.name.trim()
+        if (dropLeadingNumber) {
+            name = name.replace(/^([0-9]+?)/gi, "")
+        }
+        return changeCase.camelCase(name)
     }
 
     color() {
@@ -52,7 +64,7 @@ export class SwatchWrapper {
     }
 
     colorTag() {
-        return `<color name="${this.name()}">${this.hexARGBColor()}</color>`
+        return `<color name="${this.snakeCasedName(true)}">${this.hexARGBColor()}</color>`
     }
 
     colorSpaceString() {

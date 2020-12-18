@@ -18,7 +18,7 @@ export class CLRExporter {
     this.swatches.forEach(swatch => {
       const wrapper = new SwatchWrapper(swatch, this.colorSpace)
       const color = wrapper.nsColor()
-      colorList.setColor_forKey(color, wrapper.name())
+      colorList.setColor_forKey(color, wrapper.camelCasedName(true))
 
       // log(`🍣: ${swatch.name} => ${swatch.color}, ${this.colorSpace}, ${wrapper.contentsJSONString()}`)
     });

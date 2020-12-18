@@ -47,7 +47,7 @@ ${colorStrings}
   toCode(wrapper) {
     return `
     /// ${wrapper.hexRGBColor()} - ${wrapper.alphaValue() * 100}%
-    static let ${changeCase.camelCase(wrapper.name())}: UIColor = UIColor(named: "${changeCase.snakeCase(wrapper.name())}")!
+    static let ${wrapper.camelCasedName(true)}: UIColor = UIColor(named: "${wrapper.snakeCasedName()}")!
 `.trim()
   }
 }
