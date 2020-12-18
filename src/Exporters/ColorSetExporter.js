@@ -29,7 +29,7 @@ export class ColorSetExporter {
         null
       )
       const path = colorsetURL.path()
-      const fileString = NSString.stringWithString(wrapper.contentsJSONString())
+      const fileString = NSString.stringWithString(this.contentsJSONString(wrapper))
       fileString.writeToFile_atomically_encoding_error(
         `${path}/Contents.json`,
         true,
@@ -39,6 +39,42 @@ export class ColorSetExporter {
 
       // log(`🍣: ${swatch.name} => ${swatch.color}, ${this.colorSpace}, ${wrapper.contentsJSONString()}`)
     });
+  }
+
+  contentsJSONString(wrapper) {
+    return JSON.stringify(this.contentsJSON(wrapper), null, 2)
+  }
+
+  contentsJSON(wrapper) {
+      const c = this.colorObject(wrapper)
+      return {
+          colors: [c],
+          info: {
+              author: "github.com/griffin-stewie/ColorVariablesExporter",
+              version: 1
+          }
+      }
+  }
+
+  colorObject(wrapper) {
+      const color = {
+          "color-space": wrapper.colorSpaceString(),
+          components: this.colorComponents(wrapper)
+      }
+      return {
+          color: color,
+          idiom: "universal"
+      }
+  }
+
+  colorComponents(wrapper) {
+      const color = wrapper.color()
+      return {
+          alpha: color.alpha().toFixed(3),
+          blue: color.blue().toFixed(3),
+          green: color.green().toFixed(3),
+          red: color.red().toFixed(3),
+      }
   }
 }
 
