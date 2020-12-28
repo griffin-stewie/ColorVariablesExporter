@@ -39,6 +39,10 @@ This format is for scripting purpose. Using this JSON, you can generate codes, C
 
 This generates [CLR file](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DrawColor/Concepts/AboutColorLists.html). You can copy this file at `~/Library/Colors` then you can see your colors inside macOS native Color Picker UI.
 
+## Samples
+
+[Donwload](https://github.com/griffin-stewie/ColorVariablesExporter/releases/download/v0.2.0/samples.zip) sample files.
+
 ## Credits
 
 - [griffin-stewie](https://griffin-stewie.github.io/): Developer
