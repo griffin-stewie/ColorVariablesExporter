@@ -39,7 +39,7 @@ export class SwatchWrapper {
             case Document.ColorSpace.P3:
                 colorSpace = NSColorSpace.displayP3ColorSpace()
             default:
-                colorSpace = NSColorSpace.sRGBColorSpace()
+                colorSpace = NSColorSpace.displayP3ColorSpace()
         }
 
         return this.color().NSColorWithColorSpace(colorSpace)
@@ -70,7 +70,7 @@ export class SwatchWrapper {
             case Document.ColorSpace.P3:
                 return "display-p3";
             default:
-                return "hoge";
+                return "display-p3";
         }
     }
 }
