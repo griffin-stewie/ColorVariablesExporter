@@ -46,7 +46,7 @@ export class SwatchWrapper {
     }
 
     hexRGBColor() {
-        return this.swatch.color.toUpperCase().slice(0,7)
+        return this.swatch.color.toUpperCase().slice(0, 7)
     }
 
     hexRGBAColor() {
