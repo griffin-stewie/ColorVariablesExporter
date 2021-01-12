@@ -68,13 +68,13 @@ export class ColorSetExporter {
   }
 
   colorComponents(wrapper) {
-      const color = wrapper.color()
-      return {
-          alpha: color.alpha().toFixed(3),
-          blue: color.blue().toFixed(3),
-          green: color.green().toFixed(3),
-          red: color.red().toFixed(3),
-      }
+    const hex = wrapper.hexRGBColor()
+    return {
+      alpha: wrapper.color().alpha().toFixed(3),
+      blue: "0x" + hex.slice(5, 7),
+      green: "0x" + hex.slice(3, 5),
+      red: "0x" + hex.slice(1, 3),
+    }
   }
 }
 
