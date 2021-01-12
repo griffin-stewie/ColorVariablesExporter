@@ -46,25 +46,25 @@ export class ColorSetExporter {
   }
 
   contentsJSON(wrapper) {
-      const c = this.colorObject(wrapper)
-      return {
-          colors: [c],
-          info: {
-              author: "github.com/griffin-stewie/ColorVariablesExporter",
-              version: 1
-          }
+    const c = this.colorObject(wrapper)
+    return {
+      colors: [c],
+      info: {
+        author: "github.com/griffin-stewie/ColorVariablesExporter",
+        version: 1
       }
+    }
   }
 
   colorObject(wrapper) {
-      const color = {
-          "color-space": wrapper.colorSpaceString(),
-          components: this.colorComponents(wrapper)
-      }
-      return {
-          color: color,
-          idiom: "universal"
-      }
+    const color = {
+      "color-space": wrapper.colorSpaceString(),
+      components: this.colorComponents(wrapper)
+    }
+    return {
+      color: color,
+      idiom: "universal"
+    }
   }
 
   colorComponents(wrapper) {
