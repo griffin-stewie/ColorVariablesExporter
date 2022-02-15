@@ -9,6 +9,9 @@ import { SwiftUIColorExtensionExporter } from './Exporters/SwiftUIColorExtension
 
 export function exportAsColorSet(context) {
   const doc = sketch.getSelectedDocument()
+  if (doc === 'undefined' || doc === null) {
+    return
+  }
   const swatches = doc.swatches
   const exporter = new ColorSetExporter(swatches, doc.colorSpace)
   exportByExporter(context, exporter)
@@ -16,6 +19,9 @@ export function exportAsColorSet(context) {
 
 export function exportAsSwiftColorExtensionUsingColorSet(context) {
   const doc = sketch.getSelectedDocument()
+  if (doc === 'undefined' || doc === null) {
+    return
+  }
   const swatches = doc.swatches
   const exporter = new SwiftUIColorExtensionExporter(swatches, doc.colorSpace)
   exportByExporter(context, exporter)
@@ -23,6 +29,9 @@ export function exportAsSwiftColorExtensionUsingColorSet(context) {
 
 export function exportAsColorXML(context) {
   const doc = sketch.getSelectedDocument()
+  if (doc === 'undefined' || doc === null) {
+    return
+  }
   const swatches = doc.swatches
   const exporter = new ColorsXMLExporter(swatches, doc.colorSpace)
   exportByExporter(context, exporter)
@@ -30,6 +39,9 @@ export function exportAsColorXML(context) {
 
 export function exportAsJSON(context) {
   const doc = sketch.getSelectedDocument()
+  if (doc === 'undefined' || doc === null) {
+    return
+  }
   const swatches = doc.swatches
   const exporter = new JSONExporter(swatches, doc.colorSpace)
   exportByExporter(context, exporter)
@@ -37,6 +49,9 @@ export function exportAsJSON(context) {
 
 export function exportAsCLR(context) {
   const doc = sketch.getSelectedDocument()
+  if (doc === 'undefined' || doc === null) {
+    return
+  }
   const swatches = doc.swatches
   const exporter = new CLRExporter(swatches, doc.colorSpace)
   exportByExporter(context, exporter)
