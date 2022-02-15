@@ -41,8 +41,18 @@ export class SwatchWrapper {
             default:
                 colorSpace = NSColorSpace.displayP3ColorSpace()
         }
+        const msColor = this.color()
+        const r = msColor.red()
+        const g = msColor.green()
+        const b = msColor.blue()
+        const a = msColor.alpha()
+        // log(`🍣: rgba: r:${r}, g:${g}, b${b}, a:${a}`)
+        const nsColor = NSColor.colorWithRed_green_blue_alpha(r, g, b, a)
+        // log(`🍣: NS: ${nsColor}`)
+        const converted = nsColor.colorUsingColorSpace(colorSpace)
+        // log(`🍣: NSUsingColorSpace: ${converted}`)
 
-        return this.color().NSColorWithColorSpace(colorSpace)
+        return converted
     }
 
     hexRGBColor() {
